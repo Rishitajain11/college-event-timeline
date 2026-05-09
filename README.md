@@ -1,70 +1,151 @@
-# Getting Started with Create React App
+# 🎓 College Event Timeline
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing and displaying college events — built with **React.js** and **Appwrite** as the cloud backend database.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📸 Project Overview
 
-### `npm start`
+The College Event Timeline helps students stay updated with upcoming college events like Hackathons, Workshops, and Cultural Fests. Admins can add new events through a dedicated form, and students can view all events sorted chronologically with automatic status indicators.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+- 📅 **Student View** — See all events sorted chronologically (soonest first)
+- ➕ **Admin View** — Add new events with a clean, simple form
+- 🏷️ **Category Tags** — Events tagged as Hackathon, Workshop, Cultural Fest, Seminar
+- 🔴 **Status Indicators** — Events automatically marked as Upcoming / This Week / Today / Completed
+- 🔘 **Filter System** — Filter events by category or status
+- ⚫ **Completed Events** — Past events are automatically greyed out
+- ☁️ **Live Database** — All events stored in and fetched from Appwrite Cloud in real time
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Technology | Purpose |
+|------------|---------|
+| **React.js** | Frontend UI and component-based structure |
+| **Appwrite** | Backend-as-a-Service (cloud database) |
+| **JavaScript (ES6+)** | Logic, date handling, sorting |
+| **CSS3** | Styling and responsive layout |
+| **Git & GitHub** | Version control and project submission |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Project Structure
 
-### `npm run eject`
+```
+college-event-timeline/
+├── public/
+├── src/
+│   ├── appwrite/
+│   │   └── config.js          ← Appwrite connection + database functions
+│   ├── components/
+│   │   ├── EventCard.js       ← Reusable event card component
+│   │   └── EventCard.css
+│   ├── pages/
+│   │   ├── StudentView.js     ← Timeline page for students
+│   │   ├── StudentView.css
+│   │   ├── AdminView.js       ← Form page for admins to add events
+│   │   └── AdminView.css
+│   ├── App.js                 ← Root component with tab navigation
+│   └── App.css                ← Global styles
+├── .env.example               ← Environment variable template
+├── .gitignore
+└── README.md
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ Setup Instructions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Clone the repository
+```bash
+git clone https://github.com/Rishitajain11/college-event-timeline.git
+cd college-event-timeline
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-## Learn More
+### 3. Set up Appwrite
+- Create a free account at [cloud.appwrite.io](https://cloud.appwrite.io)
+- Create a new project
+- Create a Database called `EventsDB`
+- Create a Collection called `events` with these attributes:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Attribute | Type | Size | Required |
+|-----------|------|------|----------|
+| title | String | 100 | Yes |
+| date | String | 20 | Yes |
+| venue | String | 200 | Yes |
+| description | String | 1000 | No |
+| type | String | 50 | Yes |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Set Collection Permissions → Role: **Any** → Enable **Read** and **Create**
+- Add a **Web Platform** with hostname: `localhost`
 
-### Code Splitting
+### 4. Configure environment variables
+Create a `.env` file in the root folder:
+```env
+REACT_APP_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
+REACT_APP_PROJECT_ID=69fb06a8001ead5e0fea
+REACT_APP_DATABASE_ID=databaseID
+REACT_APP_COLLECTION_ID=CollectionTableID
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 5. Run the app
+```bash
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🗄️ Database Schema
 
-### Making a Progressive Web App
+**Collection: `events`**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Field | Type | Description |
+|-------|------|-------------|
+| title | String | Name of the event |
+| date | String | Date in YYYY-MM-DD format |
+| venue | String | Location of the event |
+| description | String | Brief description (optional) |
+| type | String | Category: Hackathon / Workshop / Cultural Fest / Seminar / Other |
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 💡 Key Concepts Used
 
-### Deployment
+- **React Hooks** — `useState` for managing data, `useEffect` for fetching events on page load
+- **Component-based architecture** — Reusable `EventCard` component used for every event
+- **Appwrite SDK** — `databases.listDocuments()` to fetch, `databases.createDocument()` to add events
+- **Chronological sorting** — `Query.orderAsc("date")` ensures soonest events appear first
+- **Dynamic status detection** — JavaScript `Date` comparison automatically detects past events
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🔐 Security
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Secret credentials stored in `.env` file
+- `.env` is listed in `.gitignore` and never pushed to GitHub
+- `.env.example` provided as a safe template for setup
+
+---
+
+## 👩‍💻 Made By
+
+**Rishita Jain**
+
+Project submitted as part of college coursework.
+
+---
+
+## 📄 License
+
+This project is open source and available for educational purposes.
