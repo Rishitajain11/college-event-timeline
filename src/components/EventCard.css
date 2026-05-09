@@ -1,0 +1,96 @@
+/* ── EventCard.css ── */
+/* Each event is displayed as a "card" — a white box with a border */
+
+.event-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border-color 0.15s, opacity 0.2s;
+  margin-bottom: 12px;
+}
+
+.event-card:hover {
+  border-color: #d1d5db;
+}
+
+/* Completed events get greyed out and a strikethrough on the title */
+.event-card.completed {
+  opacity: 0.55;
+  background: #f9fafb;
+}
+
+.event-card.completed .card-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Top row: title on the left, badges on the right */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.card-badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Small pill showing event category */
+.type-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.tag-hackathon  { background: #EEEDFE; color: #3C3489; }
+.tag-workshop   { background: #E1F5EE; color: #085041; }
+.tag-cultural   { background: #FBEAF0; color: #72243E; }
+.tag-seminar    { background: #FAEEDA; color: #633806; }
+.tag-other      { background: #F1EFE8; color: #444441; }
+
+/* Status badge showing Upcoming / This week / Today / Completed */
+.status-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.status-upcoming  { background: #dbeafe; color: #1e40af; }
+.status-soon      { background: #fef3c7; color: #92400e; }
+.status-today     { background: #d1fae5; color: #065f46; }
+.status-completed { background: #f3f4f6; color: #9ca3af; }
+
+/* Meta info row: date, countdown, venue */
+.card-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+/* Description text */
+.card-desc {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
